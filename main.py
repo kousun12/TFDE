@@ -36,7 +36,7 @@ def main():
     logging.basicConfig(level=logging.INFO,
                         format='%(levelname)-6s %(message)s')
 
-    for idx_run in range(1, FLAGS.num_run+1):
+    for idx_run in range(1, FLAGS.num_run + 1):
         tf.reset_default_graph()
         with tf.Session() as sess:
             logging.info('Begin to solve %s with run %d' % (problem_name, idx_run))
@@ -48,7 +48,7 @@ def main():
             if bsde.y_init:
                 logging.info('relative error of Y0: %s',
                              '{:.2%}'.format(
-                                 abs(bsde.y_init - training_history[-1, 2])/bsde.y_init))
+                                 abs(bsde.y_init - training_history[-1, 2]) / bsde.y_init))
             # save training history
             np.savetxt('{}_training_history_{}.csv'.format(path_prefix, idx_run),
                        training_history,
@@ -56,6 +56,7 @@ def main():
                        delimiter=",",
                        header="step,loss_function,target_value,elapsed_time",
                        comments='')
+
 
 if __name__ == '__main__':
     main()
